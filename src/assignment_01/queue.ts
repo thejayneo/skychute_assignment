@@ -8,29 +8,30 @@ class Queue {
     };
 
     push(num: number): number{
-        if (this.element.length == 0 || num > this.element[this.element.length - 1][1]) {
-            this.element[this.element.length] = [num, num];
-            this.maxArray[this.maxArray.length] = num;
+        if (this.element.length == 0 || num > this.element[0][1]) {
+            this.element = [[num,num],...this.element];
+            if (this.maxArray.length == 0) {
+                this.maxArray[0] = num;
+            } else {
+                this.maxArray[this.maxArray.length] = num;
+            };
         } else {
-            this.element[this.element.length] = [num, this.element[this.element.length - 1][1]];
+            this.element = [[num, this.element[0][1]],...this.element];
         }
         return this.element.length;
     };
 
     pop(): number {
-        let firstElement: number = this.element[0][0];
-        if (this.element[0][1] < this.element[this.element.length - 1][1]) {
-            delete this.element[0];
-        } else {
-            delete this.maxArray[this.maxArray.length - 1];
-            this.maxArray.length = this.maxArray.length - 1;
-            this.element[this.element.length - 1][1] = this.maxArray[this.maxArray.length - 1];
+        let queueFirst: number = this.element[this.element.length-1][0];
+        if (this.element[this.element.length-1][1] > this.element[0][1]) {
+            this.element[0][1] = this.maxArray[this.maxArray.length -1];
         };
-        return firstElement;
+        this.element.length -= 1;
+        return queueFirst;
     };
 
     max(): number {
-        return this.element[this.element.length-1][1];
+        return this.element[0][1];
     };
 };
 
@@ -42,7 +43,6 @@ test1.push(7);
 test1.push(3);
 console.log(test1);
 
-test1.pop();
 test1.pop();
 console.log(test1);
 
