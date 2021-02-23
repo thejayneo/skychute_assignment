@@ -19,7 +19,7 @@ class Queue {
     };
 
     pop() {
-        console.log(this.element[0][0]);
+        let x: number = this.element[0][0];
         if (this.element[0][1] < this.element[this.element.length - 1][1]) {
             delete this.element[0];
         } else {
@@ -27,6 +27,7 @@ class Queue {
             this.maxArray.length = this.maxArray.length - 1;
             this.element[this.element.length - 1][1] = this.maxArray[length - 1];
         };
+        return x;
     };
 
     max() {

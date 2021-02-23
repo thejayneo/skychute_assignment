@@ -16,9 +16,10 @@ class Stack {
     };
 
     pop() {
-        console.log(this.element[this.element.length - 1][0]);
+        let x: number = this.element[this.element.length - 1][0];
         delete this.element[this.element.length - 1];
         this.element.length = this.element.length - 1;
+        return x;
     };
 
     max() {
