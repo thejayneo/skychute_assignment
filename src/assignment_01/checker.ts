@@ -1,12 +1,12 @@
 
 function checker(seq:string): string {
     // Init. bracket coutners
-    let pO: number;
-    let pC: number;
-    let bO: number;
-    let bC: number;
-    let sO: number;
-    let sC: number;
+    let pO: number = 0;
+    let pC: number = 0;
+    let bO: number = 0;
+    let bC: number = 0;
+    let sO: number = 0;
+    let sC: number = 0;
     
     // Convert string to array
     const seqArr = seq.split('');
@@ -24,7 +24,9 @@ function checker(seq:string): string {
         } else if (seqItem == '[') {
             sO += 1;
         } else if (seqItem == ']') {
-            bC += 1;
+            sC += 1;
+        } else {
+            return;
         };
     };
 
@@ -32,14 +34,11 @@ function checker(seq:string): string {
     seqArr.forEach(assign)
 
     // Check matching counters are equal
+    console.log(pO, pC, bO, bC, sO, sC);
     if (pO == pC && bO == bC && sO == sC) {
-        console.log('Valid Sequence')
         return 'Valid Sequence';
     } else {
-        console.log('Invalid Sequence')
         return 'Invalid Sequence';
     };
 
 }
-
-checker(`(]})[{`);
