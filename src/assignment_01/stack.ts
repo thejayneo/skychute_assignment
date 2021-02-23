@@ -2,24 +2,23 @@ class Stack {
     element: Array<Array<number>>;
 
     constructor() {
-        this.element = [[]];
+        this.element = [];
     };
 
     push(num: number) {
-        if (num < this.element[this.element.length - 1][1]) {
-            this.element[this.element.length] = [num, this.element[this.element.length - 1][1]];
-            return this.element.length;
-        } else {
+        if (this.element.length == 0 || num > this.element[this.element.length - 1][1]) {
             this.element[this.element.length] = [num, num];
-            return this.element.length;
+        } else {
+            this.element[this.element.length] = [num, this.element[this.element.length - 1][1]];
         }
+        return this.element.length;
     };
 
     pop() {
-        let x: number = this.element[this.element.length - 1][0];
+        let lastElement: number = this.element[this.element.length - 1][0];
         delete this.element[this.element.length - 1];
         this.element.length = this.element.length - 1;
-        return x;
+        return lastElement;
     };
 
     max() {

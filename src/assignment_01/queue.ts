@@ -3,31 +3,30 @@ class Queue {
     maxArray: Array<number>;
 
     constructor() {
-        this.element = [[]];
+        this.element = [];
         this.maxArray = [];
     };
 
     push(num: number) {
-        if (num < this.element[this.element.length - 1][1]) {
-            this.element[this.element.length] = [num, this.element[this.element.length - 1][1]];
-            return this.element.length;
-        } else {
+        if (this.element.length == 0 || num > this.element[this.element.length - 1][1]) {
             this.element[this.element.length] = [num, num];
             this.maxArray[this.maxArray.length] = num;
-            return this.element.length;
+        } else {
+            this.element[this.element.length] = [num, this.element[this.element.length - 1][1]];
         }
+        return this.element.length;
     };
 
     pop() {
-        let x: number = this.element[0][0];
+        let firsttElement: number = this.element[0][0];
         if (this.element[0][1] < this.element[this.element.length - 1][1]) {
             delete this.element[0];
         } else {
             delete this.maxArray[this.maxArray.length - 1];
             this.maxArray.length = this.maxArray.length - 1;
-            this.element[this.element.length - 1][1] = this.maxArray[length - 1];
+            this.element[this.element.length - 1][1] = this.maxArray[this.maxArray.length - 1];
         };
-        return x;
+        return firsttElement;
     };
 
     max() {
