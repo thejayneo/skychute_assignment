@@ -5,7 +5,7 @@ class Stack {
         this.element = [];
     };
 
-    push(num: number) {
+    push(num: number): number {
         if (this.element.length == 0 || num > this.element[this.element.length - 1][1]) {
             this.element[this.element.length] = [num, num];
         } else {
@@ -14,14 +14,14 @@ class Stack {
         return this.element.length;
     };
 
-    pop() {
+    pop(): number {
         let lastElement: number = this.element[this.element.length - 1][0];
         delete this.element[this.element.length - 1];
         this.element.length = this.element.length - 1;
         return lastElement;
     };
 
-    max() {
+    max(): number {
         return this.element[this.element.length-1][1];
     };
 };
@@ -33,6 +33,7 @@ test.push(7);
 test.push(3);
 console.log(test);
 
+test.pop();
 test.pop();
 console.log(test);
 

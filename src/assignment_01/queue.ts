@@ -7,7 +7,7 @@ class Queue {
         this.maxArray = [];
     };
 
-    push(num: number) {
+    push(num: number): number{
         if (this.element.length == 0 || num > this.element[this.element.length - 1][1]) {
             this.element[this.element.length] = [num, num];
             this.maxArray[this.maxArray.length] = num;
@@ -17,8 +17,8 @@ class Queue {
         return this.element.length;
     };
 
-    pop() {
-        let firsttElement: number = this.element[0][0];
+    pop(): number {
+        let firstElement: number = this.element[0][0];
         if (this.element[0][1] < this.element[this.element.length - 1][1]) {
             delete this.element[0];
         } else {
@@ -26,10 +26,10 @@ class Queue {
             this.maxArray.length = this.maxArray.length - 1;
             this.element[this.element.length - 1][1] = this.maxArray[this.maxArray.length - 1];
         };
-        return firsttElement;
+        return firstElement;
     };
 
-    max() {
+    max(): number {
         return this.element[this.element.length-1][1];
     };
 };
@@ -37,13 +37,12 @@ class Queue {
 let test1 = new Queue;
 test1.push(-5);
 test1.push(1);
-test1.push(1);
-test1.push(1);
 test1.push(7);
 test1.push(7);
 test1.push(3);
 console.log(test1);
 
+test1.pop();
 test1.pop();
 console.log(test1);
 
