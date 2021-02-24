@@ -12,14 +12,19 @@ function seqBounds(seq: number[], sum:number) {
                 S -= seq[l-1];
                 if (S === sum) {
                     return [l, r];
+                } else if (l === r && r === seq.length) {
+                    return 'There is no valid sub-sequence.'
                 } else if (S < sum){
+                    l +=1;
                     break;
                 }
                 l += 1;
             }
         }
+        if (l === 1 && r === seq.length && S !== sum) {
+            return 'There is no valid sub-sequence.'
+        } else {
         r += 1;
+        }
     }
 }
-
-seqBounds([3,7,10,5,2,4],15);
