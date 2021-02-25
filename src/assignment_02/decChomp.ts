@@ -1,10 +1,10 @@
-function decChomp(input: number, k: number) {
+function decChomp(input: number, k: number):number {
     // Split input into integer and decimal portion.
     const int: number = parseInt(input.toString().split('.')[0],10);
     const dec: number = parseInt(input.toString().split('.')[1],10);
 
     // Define function for replacing 'subK' amount of digits.
-    function chomp(splitInput:number,subK:number){
+    function chomp(splitInput:number,subK:number):number {
         let counter: number = 0;
         let n: number = 0;
         let workingInput: number = splitInput;
