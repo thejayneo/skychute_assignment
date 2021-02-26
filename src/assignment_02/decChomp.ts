@@ -37,6 +37,8 @@ function decChomp(input: number, k: number):number {
         const answerString:string = int + '.' + processedDec;
         const answerNumber:number = parseFloat(answerString);
         return answerNumber;
+    } else if (k > (dec.toString().length + int.toString().length)) {
+        return 0;
     } else {
         return chomp(int, k - dec.toString().length);
     };

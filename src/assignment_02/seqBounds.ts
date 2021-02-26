@@ -11,6 +11,7 @@ function seqBounds(seq: number[], sum:number) {
             while (S > sum) {
                 S -= seq[l-1];
                 if (S === sum) {
+                    l +=1;
                     return [l, r];
                 } else if (l === r && r === seq.length) {
                     return 'There is no valid sub-sequence.'
@@ -28,3 +29,5 @@ function seqBounds(seq: number[], sum:number) {
         }
     }
 }
+
+seqBounds([1,2,3,4,5],10);
