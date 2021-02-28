@@ -1,0 +1,7 @@
+mutation MyMutation {
+    insert_agent(objects: {email: "jackson15810@gmail.com", name: "Jackson Ngo"}) {
+      returning {
+        id
+      }
+    }
+  }  

@@ -1,0 +1,10 @@
+mutation MyMutation($agent_id: uuid, $new_email: String) {
+    update_agent(where: {id: {_eq: $agent_id}}, _set: {email: $new_email}) {
+      returning {
+        id
+        email
+        name
+      }
+    }
+  }
+  

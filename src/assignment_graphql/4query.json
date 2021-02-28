@@ -1,0 +1,9 @@
+query MyQuery($state: String, $external: numeric, $internal: numeric) {
+    listing(where: {state: {_eq: $state}, internal: {_lte: $internal}, external: {_gte: $external}}) {
+      id
+      state
+      internal
+      external
+    }
+  }
+  

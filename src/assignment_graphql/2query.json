@@ -1,0 +1,16 @@
+query MyQuery {
+    listing {
+      id
+      name
+      aspect
+      storage
+      internal
+      external
+      state
+      project {
+        id
+        name
+      }
+    }
+  }
+  
