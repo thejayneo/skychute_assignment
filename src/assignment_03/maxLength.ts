@@ -1,4 +1,12 @@
 function maxLength(intervals:number[][]):number {
+    // Check/sort element arrays are orientated in [start point, end point]
+    function sortCoord(input:number[][]){
+        const output:number[][] = [];
+        input.forEach(element => {
+            output.push(element.sort());
+        });
+        return output;
+    }
     // Sorting matrix function
     function sortMatrix(input:number[][]):number[][] {
         const sortingLines: number[][] = [];
@@ -22,9 +30,7 @@ function maxLength(intervals:number[][]):number {
         return sortingLines;
     }
     // Sort arrays
-    const sortedIntervals:number[][] = sortMatrix(intervals);
-    // Extract array of endpoints
-    // const endpoints:number[] = ([] as number[]).concat(...sortedIntervals);
+    const sortedIntervals:number[][] = sortMatrix(sortCoord(intervals));
     // Iterate through each endpoint and if intersect with another line, add to length.
     let lengthCounter:number = 0;
     let index:number = 0;
@@ -39,8 +45,6 @@ function maxLength(intervals:number[][]):number {
         } else if (sortedIntervals[index][1] > segEnd) {
             lengthCounter += sortedIntervals[index][1] - segEnd;
             segEnd = sortedIntervals[index][1];
-        } else if (segEnd > sortedIntervals[index][1]){
-            break;
         }
         // Check if segment will continue next iteration.
         if (index + 1 < sortedIntervals.length && segEnd >= sortedIntervals[index+1][0]) {
@@ -54,5 +58,8 @@ function maxLength(intervals:number[][]):number {
         }
         index++;
     }
+    console.log(maxSegments[maxSegments.length-1]);
     return maxSegments[maxSegments.length-1];
 }
+
+maxLength([[5.4,2],[3,1.3],[4,2],[7,9],[0,3]]);

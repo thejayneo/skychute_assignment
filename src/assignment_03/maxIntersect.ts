@@ -1,4 +1,13 @@
 function maxIntersect(lines:number[][]):number {
+    // Check element arrays are orientated in [start point, end point]
+    function sortCoord(input:number[][]){
+        const output:number[][] = [];
+        input.forEach(element => {
+            output.push(element.sort());
+        });
+        return output;
+    }
+
     // Sort lines in order by starting point
     function sortMatrix(input:number[][]):number[][] {
         const sortingLines: number[][] = [];
@@ -23,7 +32,7 @@ function maxIntersect(lines:number[][]):number {
     }
 
     // Find active lines at each line's start point.
-    const sortedLines:number[][]=sortMatrix(lines);
+    const sortedLines:number[][]=sortMatrix(sortCoord(lines));
     let currentIdx:number = 0;
     let comparisonIdx:number = 0;
     let activeLines:number = 0;
