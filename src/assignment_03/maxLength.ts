@@ -58,7 +58,6 @@ function maxLength(intervals:number[][]):number {
         }
         index++;
     }
-    console.log(maxSegments[maxSegments.length-1]);
     return maxSegments[maxSegments.length-1];
 }
 
