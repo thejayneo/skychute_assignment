@@ -1,4 +1,4 @@
-function maxIntersect(lines:number[][]):number[][] {
+function maxIntersect(lines:number[][]):number {
     // Sort lines in order by starting point
     function sortMatrix(input:number[][]):number[][] {
         const sortingLines: number[][] = [];
@@ -29,21 +29,34 @@ function maxIntersect(lines:number[][]):number[][] {
     let activeLines:number = 0;
     const activeLinesMatrix:number[][]=[];
     while (currentIdx < sortedLines.length){
-        while (comparisonIdx < sortedLines.length) {
-            if (sortedLines[comparisonIdx][0] <= sortedLines[currentIdx][1]) {
-                activeLines++
-            } else if (sortedLines[comparisonIdx][0] > sortedLines[currentIdx][1]){
-                break;
+        if (comparisonIdx < currentIdx) {
+            while (comparisonIdx < currentIdx) {
+                if (sortedLines[comparisonIdx][1] > sortedLines[currentIdx][0]) {
+                    activeLines++
+                } else if (sortedLines[comparisonIdx][1] < sortedLines[currentIdx][0]){
+                    comparisonIdx++
+                    break;
+                }
+                comparisonIdx++
             }
-            comparisonIdx++
+        } else if (comparisonIdx >= currentIdx && comparisonIdx !== sortedLines.length) {
+            while (comparisonIdx < sortedLines.length) {
+                if (sortedLines[comparisonIdx][0] <= sortedLines[currentIdx][1]) {
+                    activeLines++
+                } else if (sortedLines[comparisonIdx][0] > sortedLines[currentIdx][1]){
+                    comparisonIdx++
+                    break;
+                }
+                comparisonIdx++
+            }
+        } else if (comparisonIdx === sortedLines.length) {
+            if (activeLinesMatrix.length === 0 || activeLines >= activeLinesMatrix[activeLinesMatrix.length-1][1]) {
+                activeLinesMatrix.push([sortedLines[currentIdx][0],activeLines]);
+            }
+            activeLines = 0;
+            comparisonIdx = 0;
+            currentIdx++
         }
-        activeLinesMatrix.push([sortedLines[currentIdx][0],activeLines])
-        activeLines = 0;
-        comparisonIdx = 0;
-        currentIdx++
     }
-
-    return activeLinesMatrix;
+    return activeLinesMatrix[activeLinesMatrix.length-1][0];
 }
-
-maxIntersect([[1,3],[1.3,5],[0.5,9],[5,7],[3,6.5]]);
